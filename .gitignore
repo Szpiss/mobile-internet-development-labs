@@ -1,0 +1,14 @@
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+test-page.png
+
+# Temporary/generated assets not needed in the repo
+report_assets/js-code-shot.html
+report_assets/js-code.png
+report_assets/page-result.png
+
+# Local reference materials
+JavaScript 基本架构思维导图 李龙凤.pdf
+JavaScript 基本架构知识 李龙凤.pdf
