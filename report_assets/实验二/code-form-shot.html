@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实验二代码截图2</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      background: linear-gradient(180deg, rgb(25, 29, 40), rgb(16, 19, 27));
+      font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+      color: rgb(234, 239, 247);
+    }
+
+    .frame {
+      max-width: 1220px;
+      margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 20px;
+      background: rgb(33, 38, 52);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 18px;
+      color: rgb(188, 199, 219);
+    }
+
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .red { background: rgb(255, 95, 86); }
+    .yellow { background: rgb(255, 189, 46); }
+    .green { background: rgb(39, 201, 63); }
+
+    pre {
+      margin: 0;
+      padding: 24px 28px 30px;
+      font-size: 19px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      background: rgb(22, 26, 36);
+    }
+
+    .comment { color: rgb(125, 211, 252); }
+    .keyword { color: rgb(196, 181, 253); }
+    .function { color: rgb(253, 224, 71); }
+    .string { color: rgb(134, 239, 172); }
+  </style>
+</head>
+<body>
+  <section class="frame">
+    <div class="topbar">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span>实验二 - 表单校验代码</span>
+    </div>
+    <pre><span class="comment">/**
+ * 校验用户名和密码输入是否合法。
+ * @returns {{valid: boolean, usernameMessage: string, passwordMessage: string}}
+ */</span>
+<span class="keyword">function</span> <span class="function">validateLoginForm</span>() {
+  <span class="keyword">const</span> username = usernameInput.value.trim();
+  <span class="keyword">const</span> password = passwordInput.value.trim();
+
+  <span class="keyword">if</span> (!username) {
+    usernameMessage = <span class="string">"用户名不能为空。"</span>;
+  } <span class="keyword">else if</span> (username.length &lt; <span class="string">8</span> || username.length &gt; <span class="string">20</span>) {
+    usernameMessage = <span class="string">"用户名长度应在 8~20 个字符之间。"</span>;
+  }
+
+  <span class="keyword">if</span> (!password) {
+    passwordMessage = <span class="string">"密码不能为空。"</span>;
+  } <span class="keyword">else if</span> (password.length &lt; <span class="string">6</span> || password.length &gt; <span class="string">8</span>) {
+    passwordMessage = <span class="string">"密码长度应在 6~8 个字符之间。"</span>;
+  }
+}
+
+loginForm.addEventListener(<span class="string">"submit"</span>, (event) =&gt; { ... });
+loginForm.addEventListener(<span class="string">"reset"</span>, (event) =&gt; { ... });</pre>
+  </section>
+</body>
+</html>

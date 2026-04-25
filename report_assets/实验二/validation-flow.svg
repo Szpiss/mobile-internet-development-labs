@@ -1,0 +1,64 @@
+<svg width="1100" height="1360" viewBox="0 0 1100 1360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1100" height="1360" fill="#F5F7FC"/>
+  <defs>
+    <filter id="shadow" x="0" y="0" width="200%" height="200%">
+      <feOffset dy="8"/>
+      <feGaussianBlur stdDeviation="10"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.08 0 0 0 0 0.16 0 0 0 0 0.30 0 0 0 0.14 0"/>
+      <feBlend in="SourceGraphic"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#2E5AAC"/>
+    </marker>
+  </defs>
+
+  <rect x="390" y="40" width="320" height="96" rx="26" fill="#2E5AAC" filter="url(#shadow)"/>
+  <text x="550" y="100" text-anchor="middle" font-size="36" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#FFFFFF">开始</text>
+
+  <line x1="550" y1="136" x2="550" y2="210" stroke="#2E5AAC" stroke-width="6" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="220" width="600" height="120" rx="22" fill="#FFFFFF" stroke="#7EA4F3" stroke-width="4" filter="url(#shadow)"/>
+  <text x="550" y="274" text-anchor="middle" font-size="30" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#17356E">用户输入用户名和密码</text>
+  <text x="550" y="316" text-anchor="middle" font-size="22" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#4B6089">触发表单提交事件 onsubmit</text>
+
+  <line x1="550" y1="340" x2="550" y2="418" stroke="#2E5AAC" stroke-width="6" marker-end="url(#arrow)"/>
+
+  <polygon points="550,430 770,520 550,610 330,520" fill="#FFF4DD" stroke="#E0A12E" stroke-width="4" filter="url(#shadow)"/>
+  <text x="550" y="505" text-anchor="middle" font-size="28" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#7A4A00">用户名是否合法？</text>
+  <text x="550" y="546" text-anchor="middle" font-size="22" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#9B6A10">是否为空，长度是否在 8~20 之间</text>
+
+  <line x1="770" y1="520" x2="900" y2="520" stroke="#2E5AAC" stroke-width="6" marker-end="url(#arrow)"/>
+  <text x="810" y="494" font-size="24" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#2E5AAC">否</text>
+
+  <rect x="848" y="446" width="200" height="148" rx="20" fill="#FFFFFF" stroke="#E06D5A" stroke-width="4" filter="url(#shadow)"/>
+  <text x="948" y="500" text-anchor="middle" font-size="28" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#8D2E20">提示用户名错误</text>
+  <text x="948" y="540" text-anchor="middle" font-size="21" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#A75042">显示错误信息</text>
+  <text x="948" y="574" text-anchor="middle" font-size="21" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#A75042">并将焦点定位</text>
+
+  <line x1="550" y1="610" x2="550" y2="688" stroke="#2E5AAC" stroke-width="6" marker-end="url(#arrow)"/>
+  <text x="584" y="662" font-size="24" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#2E5AAC">是</text>
+
+  <polygon points="550,702 770,792 550,882 330,792" fill="#FFF4DD" stroke="#E0A12E" stroke-width="4" filter="url(#shadow)"/>
+  <text x="550" y="778" text-anchor="middle" font-size="28" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#7A4A00">密码是否合法？</text>
+  <text x="550" y="818" text-anchor="middle" font-size="22" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#9B6A10">是否为空，长度是否在 6~8 之间</text>
+
+  <line x1="770" y1="792" x2="900" y2="792" stroke="#2E5AAC" stroke-width="6" marker-end="url(#arrow)"/>
+  <text x="810" y="766" font-size="24" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#2E5AAC">否</text>
+
+  <rect x="848" y="718" width="200" height="148" rx="20" fill="#FFFFFF" stroke="#E06D5A" stroke-width="4" filter="url(#shadow)"/>
+  <text x="948" y="772" text-anchor="middle" font-size="28" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#8D2E20">提示密码错误</text>
+  <text x="948" y="812" text-anchor="middle" font-size="21" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#A75042">显示错误信息</text>
+  <text x="948" y="846" text-anchor="middle" font-size="21" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#A75042">并将焦点定位</text>
+
+  <line x1="550" y1="882" x2="550" y2="964" stroke="#2E5AAC" stroke-width="6" marker-end="url(#arrow)"/>
+  <text x="584" y="936" font-size="24" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#2E5AAC">是</text>
+
+  <rect x="282" y="980" width="536" height="124" rx="22" fill="#FFFFFF" stroke="#6DB48B" stroke-width="4" filter="url(#shadow)"/>
+  <text x="550" y="1035" text-anchor="middle" font-size="30" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#184C30">显示提交成功信息</text>
+  <text x="550" y="1078" text-anchor="middle" font-size="22" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#466C56">弹出提示框，说明校验通过</text>
+
+  <line x1="550" y1="1104" x2="550" y2="1178" stroke="#2E5AAC" stroke-width="6" marker-end="url(#arrow)"/>
+
+  <rect x="390" y="1194" width="320" height="96" rx="26" fill="#1E8B5D" filter="url(#shadow)"/>
+  <text x="550" y="1256" text-anchor="middle" font-size="36" font-family="PingFang SC, Microsoft YaHei, sans-serif" fill="#FFFFFF">结束</text>
+</svg>

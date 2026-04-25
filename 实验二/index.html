@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="移动互联网开发基础实验二：JavaScript 事件和表单页面设计">
+  <meta name="keywords" content="JavaScript, 事件, 表单, 登录校验, 字号切换">
+  <meta name="author" content="崔子霖">
+  <title>实验二：JavaScript 事件和表单页面设计</title>
+  <style>
+    :root {
+      --bg-color: rgb(247, 244, 239);
+      --panel-color: rgb(255, 252, 247);
+      --primary-color: rgb(114, 61, 42);
+      --secondary-color: rgb(201, 115, 74);
+      --text-color: rgb(46, 36, 31);
+      --muted-color: rgb(121, 104, 94);
+      --border-color: rgb(232, 212, 198);
+      --shadow-color: rgba(122, 88, 68, 0.14);
+      --success-color: rgb(38, 126, 86);
+      --error-color: rgb(185, 67, 54);
+      --small-font: 16px;
+      --medium-font: 21px;
+      --large-font: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgb(255, 228, 214), transparent 30%),
+        linear-gradient(180deg, rgb(255, 250, 246), var(--bg-color));
+      color: var(--text-color);
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 32px auto 60px;
+    }
+
+    .hero {
+      margin-bottom: 22px;
+      padding: 28px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgb(112, 64, 45), rgb(169, 101, 66));
+      color: rgb(255, 247, 242);
+      box-shadow: 0 20px 40px rgba(112, 64, 45, 0.22);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 4vw, 44px);
+    }
+
+    .hero p {
+      margin: 0;
+      line-height: 1.7;
+      max-width: 820px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--panel-color);
+      border: 1px solid var(--border-color);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 18px 38px var(--shadow-color);
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      color: var(--primary-color);
+      font-size: 28px;
+    }
+
+    .desc {
+      margin: 0 0 18px;
+      color: var(--muted-color);
+      line-height: 1.7;
+    }
+
+    .font-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .toolbar-title {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    .font-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 46px;
+      height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--primary-color);
+      background: rgb(255, 244, 236);
+      border: 1px solid rgb(235, 202, 184);
+      font-weight: 700;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      cursor: pointer;
+    }
+
+    .font-link:hover,
+    .font-link.active {
+      background: linear-gradient(135deg, rgb(226, 138, 94), rgb(185, 96, 60));
+      color: rgb(255, 250, 247);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(180, 101, 68, 0.2);
+    }
+
+    .article-panel {
+      padding: 22px;
+      border-radius: 18px;
+      border: 1px solid var(--border-color);
+      background: rgb(255, 250, 245);
+    }
+
+    .article-panel h3 {
+      margin: 0 0 12px;
+      color: var(--primary-color);
+    }
+
+    #articleText {
+      margin: 0;
+      line-height: 1.9;
+      font-size: var(--small-font);
+      transition: font-size 0.18s ease;
+    }
+
+    .event-board {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px dashed rgb(216, 190, 174);
+      background: rgb(255, 246, 239);
+    }
+
+    .mouse-area {
+      margin-top: 12px;
+      min-height: 110px;
+      border-radius: 16px;
+      border: 1px solid rgb(231, 205, 188);
+      background:
+        linear-gradient(135deg, rgba(255, 237, 227, 0.75), rgba(255, 250, 246, 0.95));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .status-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .status-item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgb(255, 252, 248);
+      border: 1px solid rgb(236, 216, 204);
+    }
+
+    .status-label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted-color);
+      margin-bottom: 4px;
+    }
+
+    .status-value {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 20px;
+      border-radius: 18px;
+      border: 1px solid var(--border-color);
+      background: rgb(255, 249, 243);
+    }
+
+    legend {
+      padding: 0 8px;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgb(219, 195, 180);
+      background: rgb(255, 255, 255);
+      color: var(--text-color);
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    input:focus {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 4px rgba(201, 115, 74, 0.14);
+    }
+
+    .field.active input {
+      border-color: rgb(176, 117, 85);
+      background: rgb(255, 250, 246);
+    }
+
+    .helper {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--muted-color);
+    }
+
+    .error {
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--error-color);
+      min-height: 20px;
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, rgb(194, 108, 66), rgb(149, 78, 48));
+      color: rgb(255, 251, 248);
+      box-shadow: 0 14px 24px rgba(149, 78, 48, 0.2);
+    }
+
+    .reset-btn {
+      background: linear-gradient(135deg, rgb(132, 139, 156), rgb(99, 107, 126));
+      color: rgb(255, 255, 255);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .result-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgb(220, 202, 190);
+      background: rgb(255, 251, 247);
+    }
+
+    .result-box h3 {
+      margin: 0 0 10px;
+      color: var(--primary-color);
+    }
+
+    #formStatus {
+      margin: 0;
+      line-height: 1.8;
+      color: var(--muted-color);
+    }
+
+    .success-text {
+      color: var(--success-color);
+      font-weight: 700;
+    }
+
+    .error-text {
+      color: var(--error-color);
+      font-weight: 700;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      color: var(--muted-color);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 20px, 1120px);
+      }
+
+      .card,
+      .hero {
+        padding: 18px;
+      }
+
+      .status-list {
+        grid-template-columns: 1fr;
+      }
+
+      .actions button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>实验二：JavaScript 事件和表单页面设计</h1>
+      <p>
+        本页面综合演示 JavaScript 事件、H5 表单和数据合法性校验功能。
+        左侧实现“点击链接切换字号”，右侧实现“用户登录输入校验”，同时补充鼠标、键盘和窗口事件的状态展示。
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>项目 1：改变网页字号大小</h2>
+        <p class="desc">
+          单击不同字号链接后，下方正文会切换到对应的字号。这里同时演示了三种事件绑定方式：
+          行内事件、DOM0 事件和 <code>addEventListener</code>。
+        </p>
+
+        <div class="font-toolbar">
+          <span class="toolbar-title">选择字号：</span>
+          <a id="smallLink" class="font-link active" href="#" onclick="changeFontSize('small'); return false;">小</a>
+          <a id="mediumLink" class="font-link" href="#">中</a>
+          <a id="largeLink" class="font-link" href="#">大</a>
+        </div>
+
+        <section class="article-panel">
+          <h3>JavaScript 简介</h3>
+          <p id="articleText">
+            JavaScript是一种能让你的网页更加生动活泼的程式语言，也是目前网页中设计中最容易学又最方便的语言。
+            你可以利用JavaScript轻易的做出亲切的欢迎讯息、漂亮的数字钟、有广告效果的跑马灯及简易的选举，
+            还可以显示浏览器停留的时间。让这些特殊效果提高网页的可观性。
+          </p>
+        </section>
+
+        <section class="event-board">
+          <strong>事件状态面板</strong>
+          <div class="mouse-area" id="mouseArea">在此区域移动鼠标，观察鼠标移动事件效果</div>
+          <div class="status-list">
+            <div class="status-item">
+              <span class="status-label">当前字号</span>
+              <span id="fontStatus" class="status-value">小号字体</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">最近窗口事件</span>
+              <span id="windowStatus" class="status-value">页面加载中...</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">最近鼠标位置</span>
+              <span id="mouseStatus" class="status-value">等待移动</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">最近键盘事件</span>
+              <span id="keyboardStatus" class="status-value">等待输入</span>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="card">
+        <h2>项目 2：用户登录合法性校验</h2>
+        <p class="desc">
+          用户名不能为空，长度应在 8~20 个字符之间；密码不能为空，长度应在 6~8 个字符之间。
+          当输入不合法时，页面会提示错误信息并把焦点定位到对应输入框。
+        </p>
+
+        <form id="loginForm" novalidate>
+          <fieldset>
+            <legend>用户登录表单</legend>
+
+            <div class="field" id="usernameField">
+              <label for="username">用户名</label>
+              <input id="username" name="username" type="text" placeholder="请输入 8~20 位用户名" autocomplete="username">
+              <div class="helper">建议输入字母或数字组合，长度 8~20 位。</div>
+              <div id="usernameError" class="error"></div>
+            </div>
+
+            <div class="field" id="passwordField">
+              <label for="password">密码</label>
+              <input id="password" name="password" type="password" placeholder="请输入 6~8 位密码" autocomplete="current-password">
+              <div class="helper">密码长度要求为 6~8 位。</div>
+              <div id="passwordError" class="error"></div>
+            </div>
+
+            <div class="actions">
+              <button class="submit-btn" type="submit">提交登录</button>
+              <button class="reset-btn" type="reset">重置表单</button>
+            </div>
+          </fieldset>
+        </form>
+
+        <section class="result-box">
+          <h3>表单状态</h3>
+          <p id="formStatus">尚未提交表单，请输入用户名和密码后进行测试。</p>
+        </section>
+      </article>
+    </section>
+
+    <p class="footer-note">
+      本页面综合使用了 <code>load</code>、<code>click</code>、<code>mousemove</code>、
+      <code>focus</code>、<code>blur</code>、<code>keyup</code>、<code>submit</code> 和 <code>reset</code> 等事件。
+    </p>
+  </main>
+
+  <script>
+    const articleText = document.getElementById("articleText");
+    const fontStatus = document.getElementById("fontStatus");
+    const windowStatus = document.getElementById("windowStatus");
+    const mouseStatus = document.getElementById("mouseStatus");
+    const keyboardStatus = document.getElementById("keyboardStatus");
+    const mouseArea = document.getElementById("mouseArea");
+    const loginForm = document.getElementById("loginForm");
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+    const usernameError = document.getElementById("usernameError");
+    const passwordError = document.getElementById("passwordError");
+    const formStatus = document.getElementById("formStatus");
+    const smallLink = document.getElementById("smallLink");
+    const mediumLink = document.getElementById("mediumLink");
+    const largeLink = document.getElementById("largeLink");
+    const usernameField = document.getElementById("usernameField");
+    const passwordField = document.getElementById("passwordField");
+
+    /**
+     * 切换文章字号并同步更新状态。
+     * @param {"small" | "medium" | "large"} size 目标字号类型。
+     * @returns {void} 本函数仅更新页面展示状态。
+     */
+    function changeFontSize(size) {
+      const sizeMap = {
+        small: { fontSize: "var(--small-font)", label: "小号字体" },
+        medium: { fontSize: "var(--medium-font)", label: "中号字体" },
+        large: { fontSize: "var(--large-font)", label: "大号字体" }
+      };
+
+      articleText.style.fontSize = sizeMap[size].fontSize;
+      fontStatus.textContent = sizeMap[size].label;
+
+      [smallLink, mediumLink, largeLink].forEach((link) => link.classList.remove("active"));
+      if (size === "small") smallLink.classList.add("active");
+      if (size === "medium") mediumLink.classList.add("active");
+      if (size === "large") largeLink.classList.add("active");
+    }
+
+    /**
+     * 校验用户名和密码输入是否合法。
+     * @returns {{valid: boolean, usernameMessage: string, passwordMessage: string}} 返回校验结果和对应提示信息。
+     */
+    function validateLoginForm() {
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+      let valid = true;
+      let usernameMessage = "";
+      let passwordMessage = "";
+
+      if (!username) {
+        valid = false;
+        usernameMessage = "用户名不能为空。";
+      } else if (username.length < 8 || username.length > 20) {
+        valid = false;
+        usernameMessage = "用户名长度应在 8~20 个字符之间。";
+      }
+
+      if (!password) {
+        valid = false;
+        passwordMessage = "密码不能为空。";
+      } else if (password.length < 6 || password.length > 8) {
+        valid = false;
+        passwordMessage = "密码长度应在 6~8 个字符之间。";
+      }
+
+      return { valid, usernameMessage, passwordMessage };
+    }
+
+    /**
+     * 根据校验结果刷新页面中的错误提示。
+     * @param {{usernameMessage: string, passwordMessage: string}} result 校验结果对象。
+     * @returns {void} 本函数只负责渲染错误信息。
+     */
+    function renderValidationMessages(result) {
+      usernameError.textContent = result.usernameMessage;
+      passwordError.textContent = result.passwordMessage;
+    }
+
+    function bindFieldHighlight(field, input) {
+      input.addEventListener("focus", () => {
+        field.classList.add("active");
+      });
+
+      input.addEventListener("blur", () => {
+        field.classList.remove("active");
+      });
+    }
+
+    function applyDemoState() {
+      const params = new URLSearchParams(window.location.search);
+      const font = params.get("font");
+      const demo = params.get("demo");
+
+      if (font === "medium" || font === "large" || font === "small") {
+        changeFontSize(font);
+      }
+
+      if (demo === "login-error") {
+        usernameInput.value = "user";
+        passwordInput.value = "12";
+        const result = validateLoginForm();
+        renderValidationMessages(result);
+        formStatus.innerHTML = "<span class='error-text'>提交失败：</span> 用户名和密码长度均不符合要求。";
+      }
+    }
+
+    window.onload = function onWindowLoad() {
+      windowStatus.textContent = "页面已完成加载";
+      applyDemoState();
+    };
+
+    mediumLink.onclick = function handleMediumClick(event) {
+      event.preventDefault();
+      changeFontSize("medium");
+    };
+
+    largeLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      changeFontSize("large");
+    });
+
+    mouseArea.addEventListener("mousemove", (event) => {
+      const rect = mouseArea.getBoundingClientRect();
+      const x = Math.round(event.clientX - rect.left);
+      const y = Math.round(event.clientY - rect.top);
+      mouseStatus.textContent = `X: ${x}px, Y: ${y}px`;
+    });
+
+    [usernameInput, passwordInput].forEach((input) => {
+      input.addEventListener("keyup", (event) => {
+        keyboardStatus.textContent = `键盘事件：${event.key}（当前长度 ${input.value.length}）`;
+      });
+    });
+
+    bindFieldHighlight(usernameField, usernameInput);
+    bindFieldHighlight(passwordField, passwordInput);
+
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const result = validateLoginForm();
+      renderValidationMessages(result);
+
+      if (!result.valid) {
+        formStatus.innerHTML = "<span class='error-text'>提交失败：</span> 输入数据不合法，请根据提示修改后重新提交。";
+        if (result.usernameMessage) {
+          usernameInput.focus();
+          return;
+        }
+        if (result.passwordMessage) {
+          passwordInput.focus();
+        }
+        return;
+      }
+
+      formStatus.innerHTML = `<span class='success-text'>提交成功：</span> 用户名 ${usernameInput.value.trim()} 已通过合法性校验。`;
+      alert("登录信息校验通过，可以继续后续操作。");
+    });
+
+    loginForm.addEventListener("reset", (event) => {
+      const confirmed = confirm("确定要重置表单内容吗？");
+      if (!confirmed) {
+        event.preventDefault();
+        return;
+      }
+
+      setTimeout(() => {
+        usernameError.textContent = "";
+        passwordError.textContent = "";
+        formStatus.textContent = "表单已重置，请重新输入用户名和密码。";
+        keyboardStatus.textContent = "等待输入";
+      }, 0);
+    });
+  </script>
+</body>
+</html>

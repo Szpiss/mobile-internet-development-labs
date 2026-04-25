@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实验二代码截图1</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      background: linear-gradient(180deg, rgb(28, 32, 43), rgb(17, 20, 28));
+      font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+      color: rgb(234, 239, 247);
+    }
+
+    .frame {
+      max-width: 1220px;
+      margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 20px;
+      background: rgb(33, 38, 52);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 18px;
+      color: rgb(188, 199, 219);
+    }
+
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .red { background: rgb(255, 95, 86); }
+    .yellow { background: rgb(255, 189, 46); }
+    .green { background: rgb(39, 201, 63); }
+
+    pre {
+      margin: 0;
+      padding: 24px 28px 30px;
+      font-size: 20px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      background: rgb(22, 26, 36);
+    }
+
+    .comment { color: rgb(125, 211, 252); }
+    .keyword { color: rgb(196, 181, 253); }
+    .function { color: rgb(253, 224, 71); }
+    .string { color: rgb(134, 239, 172); }
+  </style>
+</head>
+<body>
+  <section class="frame">
+    <div class="topbar">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span>实验二 - 字号切换与事件绑定代码</span>
+    </div>
+    <pre><span class="comment">/**
+ * 切换文章字号并同步更新状态。
+ * @param {"small" | "medium" | "large"} size 目标字号类型。
+ * @returns {void} 本函数仅更新页面展示状态。
+ */</span>
+<span class="keyword">function</span> <span class="function">changeFontSize</span>(size) {
+  <span class="keyword">const</span> sizeMap = {
+    small: { fontSize: <span class="string">"var(--small-font)"</span>, label: <span class="string">"小号字体"</span> },
+    medium: { fontSize: <span class="string">"var(--medium-font)"</span>, label: <span class="string">"中号字体"</span> },
+    large: { fontSize: <span class="string">"var(--large-font)"</span>, label: <span class="string">"大号字体"</span> }
+  };
+
+  articleText.style.fontSize = sizeMap[size].fontSize;
+  fontStatus.textContent = sizeMap[size].label;
+}
+
+smallLink.onclick = <span class="keyword">function</span>() { ... };
+mediumLink.onclick = <span class="keyword">function</span>(event) { ... };
+largeLink.addEventListener(<span class="string">"click"</span>, (event) =&gt; { ... });</pre>
+  </section>
+</body>
+</html>
