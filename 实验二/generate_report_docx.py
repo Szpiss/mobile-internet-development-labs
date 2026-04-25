@@ -7,9 +7,9 @@ from docx.oxml.ns import qn
 from docx.shared import Cm, Pt
 
 
-ROOT = Path("/Users/cuing/javascript")
-ASSETS = ROOT / "report_assets" / "实验二"
-OUTPUT = ROOT / "实验文档" / "2315302125 崔子霖2.docx"
+BASE_DIR = Path(__file__).resolve().parent
+ASSETS = BASE_DIR / "实验素材"
+OUTPUT = BASE_DIR / "实验文档" / "2315302125 崔子霖2.docx"
 
 
 def set_run_font(run, size=12, bold=False, east_asia="宋体", western="Times New Roman"):
@@ -180,7 +180,7 @@ def main():
 }""")
 
     add_heading(document, "五、实验结果")
-    add_body_paragraph(document, "本实验运行环境为 macOS（Apple M1 Pro），使用 Visual Studio Code 编写代码，使用 Google Chrome 打开本地页面进行运行和测试。实验二源码位于 /Users/cuing/javascript/实验二/index.html。")
+    add_body_paragraph(document, "本实验运行环境为 macOS（Apple M1 Pro），使用 Visual Studio Code 编写代码，使用 Google Chrome 打开本地页面进行运行和测试。实验二源码位于实验二目录下的 index.html 文件。")
     steps = [
         "新建实验二页面文件，完成 HTML 结构、meta 标签和双栏布局设计。",
         "实现字号切换功能，并通过三种事件绑定方式演示单击事件处理。",
