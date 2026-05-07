@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实验三 CSS 代码截图</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      background: rgb(22, 28, 31);
+      font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+      color: rgb(238, 243, 244);
+    }
+
+    .frame {
+      max-width: 1220px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.36);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 20px;
+      background: rgb(35, 43, 47);
+      color: rgb(181, 196, 199);
+      font-size: 17px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .red { background: rgb(255, 95, 86); }
+    .yellow { background: rgb(255, 189, 46); }
+    .green { background: rgb(39, 201, 63); }
+
+    pre {
+      margin: 0;
+      padding: 26px 30px;
+      background: rgb(18, 23, 26);
+      font-size: 19px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .selector { color: rgb(137, 220, 235); }
+    .prop { color: rgb(249, 226, 175); }
+    .value { color: rgb(166, 227, 161); }
+  </style>
+</head>
+<body>
+  <section class="frame">
+    <div class="topbar">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span>实验三 - CSS 布局与背景图</span>
+    </div>
+    <pre><span class="selector">.site-header</span> {
+  <span class="prop">position</span>: <span class="value">sticky</span>;
+  <span class="prop">top</span>: <span class="value">0</span>;
+  <span class="prop">background-color</span>: <span class="value">rgba(255, 255, 255, 0.94)</span>;
+}
+
+<span class="selector">.banner</span> {
+  <span class="prop">min-height</span>: <span class="value">620px</span>;
+  <span class="prop">display</span>: <span class="value">flex</span>;
+  <span class="prop">align-items</span>: <span class="value">center</span>;
+  <span class="prop">background-image</span>:
+    <span class="value">linear-gradient(...),
+    url("../img/banner.jpg")</span>;
+  <span class="prop">background-position</span>: <span class="value">center</span>;
+  <span class="prop">background-size</span>: <span class="value">cover</span>;
+}
+
+<span class="selector">.service-grid</span> {
+  <span class="prop">display</span>: <span class="value">grid</span>;
+  <span class="prop">grid-template-columns</span>: <span class="value">repeat(4, minmax(0, 1fr))</span>;
+}</pre>
+  </section>
+</body>
+</html>

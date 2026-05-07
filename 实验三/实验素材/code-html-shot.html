@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实验三 HTML 代码截图</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      background: rgb(22, 28, 31);
+      font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+      color: rgb(238, 243, 244);
+    }
+
+    .frame {
+      max-width: 1220px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.36);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 20px;
+      background: rgb(35, 43, 47);
+      color: rgb(181, 196, 199);
+      font-size: 17px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .red { background: rgb(255, 95, 86); }
+    .yellow { background: rgb(255, 189, 46); }
+    .green { background: rgb(39, 201, 63); }
+
+    pre {
+      margin: 0;
+      padding: 26px 30px;
+      background: rgb(18, 23, 26);
+      font-size: 19px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .tag { color: rgb(116, 199, 236); }
+    .attr { color: rgb(249, 226, 175); }
+    .text { color: rgb(166, 227, 161); }
+  </style>
+</head>
+<body>
+  <section class="frame">
+    <div class="topbar">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span>实验三 - HTML 页面结构</span>
+    </div>
+    <pre><span class="tag">&lt;header</span> <span class="attr">class</span>=<span class="text">"site-header"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="text">"center header-inner"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h1</span> <span class="attr">class</span>=<span class="text">"logo"</span><span class="tag">&gt;</span><span class="text">栖境装饰</span><span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;nav</span> <span class="attr">class</span>=<span class="text">"main-nav"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;a</span> <span class="attr">class</span>=<span class="text">"active"</span><span class="tag">&gt;</span><span class="text">首页</span><span class="tag">&lt;/a&gt;</span>
+      <span class="tag">&lt;a&gt;</span><span class="text">整装服务</span><span class="tag">&lt;/a&gt;</span>
+      <span class="tag">&lt;a&gt;</span><span class="text">案例作品</span><span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/nav&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+
+<span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="text">"banner"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="text">"center banner-content"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h2&gt;</span><span class="text">把家的尺度，交给专业设计重新打开</span><span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="text">提供一站式住宅装修解决方案。</span><span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/section&gt;</span></pre>
+  </section>
+</body>
+</html>
