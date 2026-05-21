@@ -150,7 +150,7 @@ def main():
         add_body_paragraph(document, f"{index}. {item}")
 
     add_heading(document, "三、概要设计")
-    add_body_paragraph(document, "邀请函整体采用移动端 H5 页面结构，外层为 .swiper 容器，中间为 .swiper-wrapper，内部三页内容均使用 .swiper-slide 表示。第一页展示活动标题和艺术作品图，第二页展示活动介绍、地点和时间，第三页展示 pic1 图片和作品说明。")
+    add_body_paragraph(document, "邀请函整体采用移动端 H5 页面结构，外层为 .swiper 容器，中间为 .swiper-wrapper，内部三页内容均使用 .swiper-slide 表示。第一页展示活动标题和艺术作品图，第二页展示活动介绍、地点和时间，第三页按照实验要求重点展示 pic1 图片。")
     add_body_paragraph(document, "页面通过 Swiper 的 direction 配置设置为 vertical，实现竖向滑动；通过 pagination 显示分页器；通过 mousewheel 配置支持桌面浏览器滚轮切换。动画部分通过元素上的 swiper-animate-effect、swiper-animate-duration 和 swiper-animate-delay 属性控制。")
 
     add_heading(document, "四、详细设计")
