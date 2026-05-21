@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 与 JS 代码截图</title>
+  <style>
+    body { margin: 0; background: #eef3ef; font-family: Menlo, Consolas, monospace; }
+    pre { margin: 24px; padding: 24px; background: #10251b; color: #edf7ef; border-radius: 8px; font-size: 17px; line-height: 1.58; white-space: pre-wrap; }
+    .key { color: #8bd3ff; }
+    .value { color: #fde68a; }
+    .note { color: #9ae6b4; }
+  </style>
+</head>
+<body>
+<pre><span class="note">/* 样式中定义三类实验要求动画 */</span>
+.<span class="key">effect-swing</span> {
+  animation-name: <span class="value">swing</span>;
+  transform-origin: top center;
+}
+
+.<span class="key">effect-bounceIn</span> {
+  animation-name: <span class="value">bounceIn</span>;
+}
+
+.<span class="key">effect-zoomIn</span> {
+  animation-name: <span class="value">zoomIn</span>;
+}
+
+<span class="note">// JavaScript 中初始化 Swiper 竖向切换</span>
+var swiper = new Swiper(".invite-swiper", {
+  direction: <span class="value">"vertical"</span>,
+  loop: false,
+  speed: 620,
+  mousewheel: true,
+  pagination: {
+    el: <span class="value">".swiper-pagination"</span>,
+    clickable: true
+  },
+  on: {
+    init: function () {
+      runAnimations(this.slides[this.activeIndex]);
+    },
+    slideChangeTransitionEnd: function () {
+      runAnimations(this.slides[this.activeIndex]);
+    }
+  }
+});</pre>
+</body>
+</html>
