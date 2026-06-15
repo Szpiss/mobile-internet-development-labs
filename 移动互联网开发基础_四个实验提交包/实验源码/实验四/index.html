@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="移动互联网开发基础实验四：Swiper H5 设计展邀请函">
+  <meta name="keywords" content="Swiper, 邀请函, H5, 移动端页面">
+  <meta name="author" content="崔子霖">
+  <title>Html5 设计展邀请函</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="phone-stage" aria-label="Html5 设计展邀请函">
+    <section class="swiper invite-swiper">
+      <div class="swiper-wrapper">
+        <article class="swiper-slide slide slide-cover">
+          <img class="slide-bg" src="img/page1-bg.png" alt="">
+          <div class="cover-content">
+            <p class="tag ani" data-effect="fadeInDown">HTML5 DESIGN EXHIBITION</p>
+            <h1 class="title ani" swiper-animate-effect="swing" swiper-animate-duration="0.9s" swiper-animate-delay="0.2s">
+              Html5设计展
+            </h1>
+            <p class="subtitle ani" data-effect="fadeInUp">For Your Text Here</p>
+            <img class="cover-art ani" src="img/starry.png" alt="星空艺术作品" data-effect="fadeInUp">
+          </div>
+        </article>
+
+        <article class="swiper-slide slide slide-intro">
+          <img class="slide-bg" src="img/page2-bg.png" alt="">
+          <div class="intro-card">
+            <h2 class="ani" swiper-animate-effect="bounceIn" swiper-animate-duration="0.8s" swiper-animate-delay="0.2s">
+              活动介绍
+            </h2>
+            <p class="ani" data-effect="fadeInUp">
+              该活动发起者为计算机与科学学院，旨在培养程序员艺术审美，期待你的参加。
+            </p>
+          </div>
+          <dl class="event-info ani" data-effect="fadeInUp">
+            <div>
+              <dt>活动地点</dt>
+              <dd>紫金学院实验楼 B201</dd>
+            </div>
+            <div>
+              <dt>活动时间</dt>
+              <dd>2026年5月21日</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="swiper-slide slide slide-gallery">
+          <div class="gallery-content">
+            <img class="pic1 ani" src="img/pic1.png" alt="设计展作品拼贴图"
+                 swiper-animate-effect="zoomIn" swiper-animate-duration="0.9s" swiper-animate-delay="0.15s">
+          </div>
+        </article>
+      </div>
+      <div class="swiper-pagination"></div>
+      <button class="slide-tip" type="button" aria-label="向下滑动">
+        <span></span>
+      </button>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

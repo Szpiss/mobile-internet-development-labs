@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="移动互联网开发基础实验一：开发环境搭建并编写简单的 JavaScript 函数">
+  <meta name="keywords" content="JavaScript, factorial, 阶乘, 实验一">
+  <meta name="author" content="cuing">
+  <title>实验一：计算 1! + 2! + ... + N!</title>
+  <style>
+    :root {
+      --bg-color: rgb(241, 246, 255);
+      --panel-color: rgb(255, 255, 255);
+      --primary-color: rgb(34, 66, 124);
+      --accent-color: rgb(53, 110, 201);
+      --text-color: rgb(34, 34, 34);
+      --muted-color: rgb(92, 105, 130);
+      --border-color: rgb(206, 220, 244);
+      --shadow-color: rgba(46, 78, 130, 0.14);
+      --success-color: rgb(25, 120, 88);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgb(221, 232, 255), transparent 34%),
+        linear-gradient(180deg, rgb(247, 250, 255), var(--bg-color));
+      color: var(--text-color);
+    }
+
+    .page {
+      width: min(860px, calc(100% - 32px));
+      margin: 40px auto;
+    }
+
+    .card {
+      background-color: var(--panel-color);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 18px 48px var(--shadow-color);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 40px);
+      color: var(--primary-color);
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    .subtitle {
+      margin: 0 0 26px;
+      color: var(--muted-color);
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0 18px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    input {
+      width: 220px;
+      padding: 12px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 16px;
+      color: var(--text-color);
+      background-color: rgb(250, 252, 255);
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 4px rgba(53, 110, 201, 0.14);
+    }
+
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-color), rgb(26, 83, 173));
+      color: rgb(255, 255, 255);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(26, 83, 173, 0.2);
+    }
+
+    .secondary-button {
+      background: linear-gradient(135deg, rgb(134, 146, 168), rgb(95, 108, 131));
+    }
+
+    .hint,
+    .result-title {
+      color: var(--muted-color);
+    }
+
+    .result {
+      margin-top: 22px;
+      padding: 20px;
+      border-radius: 14px;
+      background-color: rgb(247, 250, 255);
+      border: 1px solid rgb(224, 233, 247);
+    }
+
+    .result-title {
+      margin-top: 0;
+      font-weight: 700;
+    }
+
+    #steps {
+      margin: 0;
+      padding-left: 24px;
+      line-height: 1.9;
+      color: var(--primary-color);
+    }
+
+    #sum {
+      margin: 16px 0 0;
+      font-size: 20px;
+      color: var(--success-color);
+      font-weight: 700;
+    }
+
+    #status {
+      margin: 12px 0 0;
+      font-size: 15px;
+      color: var(--muted-color);
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      font-size: 14px;
+      color: var(--muted-color);
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        padding: 22px;
+      }
+
+      input,
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="card">
+      <h1>实验一：计算 ∑N!</h1>
+      <p class="subtitle">
+        使用 <strong>JavaScript</strong> 编写函数，计算 <strong>1! + 2! + 3! + ... + N!</strong>，
+        并逐项显示每个阶乘的计算结果。
+      </p>
+
+      <div>
+        <label for="numberInput">请输入正整数 N：</label>
+        <div class="form-row">
+          <input id="numberInput" type="number" min="1" step="1" value="10" placeholder="例如 10">
+          <div class="button-group">
+            <button id="calcButton" type="button">开始计算</button>
+            <button id="clearButton" class="secondary-button" type="button">清空</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="hint">示例：当 N = 10 时，结果应为 4037913。</p>
+
+      <section class="result" aria-live="polite">
+        <h2 class="result-title">计算结果</h2>
+        <ol id="steps"></ol>
+        <p id="sum"></p>
+        <p id="status"></p>
+      </section>
+
+      <p class="footer-note">
+        本页面使用了实验要求中的 <code>meta</code> 标签、前景色/背景色设置、<code>rgb()</code> 颜色函数和常见文本标签。
+      </p>
+    </section>
+  </main>
+
+  <script>
+    /**
+     * 计算 1! 到 N! 的累加和。
+     * @param {number} n 用户输入的正整数 N。
+     * @returns {{details: string[], total: number}} 返回每一项阶乘文本和最终累加结果。
+     */
+    function calculateFactorialSum(n) {
+      let factorial = 1;
+      let total = 0;
+      const details = [];
+
+      for (let i = 1; i <= n; i += 1) {
+        factorial *= i;
+        total += factorial;
+        details.push(`${i}! = ${factorial}`);
+      }
+
+      return { details, total };
+    }
+
+    /**
+     * 读取输入框内容并将计算结果渲染到页面。
+     * @returns {void} 本函数只更新页面，不返回数据。
+     */
+    function renderResult() {
+      const input = document.getElementById("numberInput");
+      const stepsElement = document.getElementById("steps");
+      const sumElement = document.getElementById("sum");
+      const statusElement = document.getElementById("status");
+      const value = Number(input.value);
+
+      if (!Number.isInteger(value) || value <= 0) {
+        stepsElement.innerHTML = "";
+        sumElement.textContent = "请输入大于 0 的正整数。";
+        statusElement.textContent = "当前输入无效，无法进行阶乘累加计算。";
+        return;
+      }
+
+      const result = calculateFactorialSum(value);
+      stepsElement.innerHTML = result.details.map((item) => `<li>${item}</li>`).join("");
+      sumElement.textContent = `1! + 2! + ... + ${value}! = ${result.total}`;
+      statusElement.textContent = `已完成 ${value} 项阶乘计算，并输出全部中间结果。`;
+    }
+
+    /**
+     * 清空输入框和结果区域，方便重新演示实验效果。
+     * @returns {void} 本函数只负责重置页面状态。
+     */
+    function clearResult() {
+      document.getElementById("numberInput").value = "";
+      document.getElementById("steps").innerHTML = "";
+      document.getElementById("sum").textContent = "";
+      document.getElementById("status").textContent = "结果已清空，请重新输入正整数 N。";
+    }
+
+    document.getElementById("calcButton").addEventListener("click", renderResult);
+    document.getElementById("clearButton").addEventListener("click", clearResult);
+    document.getElementById("numberInput").addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        renderResult();
+      }
+    });
+
+    renderResult();
+  </script>
+</body>
+</html>

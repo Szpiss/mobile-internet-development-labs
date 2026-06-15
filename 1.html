@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>移动适配</title>
+  <link rel="stylesheet" href="../swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="./04 demo.css">
+</head>
+
+<body>
+
+  <div class="box">
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><a href="#"><img src="./images/qyg1.jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="#"><img src="./images/qyg2.jpg" alt=""></a></div>
+        <div class="swiper-slide"><a href="#"><img src="./images/qyg3.jpg" alt=""></a></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <div class="info-name">
+    <div class="name">奇异果</div>
+    <div class="description">享受清爽汁水融入齿间感觉</div>
+  </div>
+
+  <div class="info-price">
+    <div class="price">¥18.9</div>
+    <div class="other">
+      <div class="origin-price">
+        <del>原价：99.8</del>
+      </div>
+      <div class="unit">规格：4件</div>
+      <div class="place">产地：中国</div>
+    </div>
+  </div>
+
+  <div class="info-discount">
+    <div class="name">优惠活动：</div>
+    <div class="value">全场满49元包邮</div>
+  </div>
+
+  <div class="push">
+    <div class="top">“亚当和夏娃都无法抵挡的禁果诱惑”</div>
+  </div>
+
+
+
+  <script src="../swiper/swiper-bundle.min.js"></script>
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      // 小圆点
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      // 自动播放
+      autoplay: {
+        delay: 1000,
+        stopOnLastSlide: false,
+
+      },
+    });
+  </script>
+</body>
+
+</html>

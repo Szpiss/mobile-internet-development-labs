@@ -1,0 +1,295 @@
+:root {
+  --ink: rgb(31, 37, 42);
+  --blue: rgb(30, 70, 225);
+  --green: rgb(18, 120, 59);
+  --paper: rgb(252, 250, 239);
+  --shadow: rgba(18, 36, 66, 0.2);
+  --white: rgb(255, 255, 255);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(30, 70, 225, 0.18), rgba(18, 120, 59, 0.12)),
+    rgb(239, 244, 241);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+.phone-stage {
+  width: min(100vw, 430px);
+  height: min(100vh, 760px);
+  min-height: 560px;
+  background-color: var(--paper);
+  box-shadow: 0 26px 80px var(--shadow);
+  overflow: hidden;
+  position: relative;
+}
+
+.invite-swiper,
+.swiper-wrapper,
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--paper);
+}
+
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-cover .slide-bg,
+.slide-intro .slide-bg {
+  opacity: 0.22;
+}
+
+.cover-content {
+  position: relative;
+  z-index: 2;
+  padding: 66px 28px 0;
+  text-align: center;
+}
+
+.tag {
+  margin: 0 0 14px;
+  color: rgb(27, 98, 70);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.title {
+  margin: 0;
+  color: var(--blue);
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 900;
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.75);
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: rgba(34, 45, 45, 0.58);
+  font-size: 20px;
+  font-style: italic;
+}
+
+.cover-art {
+  width: min(82vw, 330px);
+  margin: 54px auto 0;
+  border: 8px solid rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 42px rgba(30, 70, 225, 0.16);
+}
+
+.intro-card {
+  position: relative;
+  z-index: 2;
+  padding: 92px 28px 0;
+}
+
+.intro-card h2 {
+  margin: 0 0 72px;
+  text-align: center;
+  color: var(--blue);
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.intro-card p {
+  max-width: 330px;
+  margin: 0 auto;
+  padding: 22px 20px;
+  background-color: rgba(255, 255, 255, 0.72);
+  border-left: 5px solid rgba(30, 70, 225, 0.76);
+  font-size: 18px;
+  line-height: 1.75;
+  font-weight: 700;
+}
+
+.event-info {
+  position: absolute;
+  left: 90px;
+  right: 34px;
+  bottom: 72px;
+  z-index: 2;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.event-info div {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 4px;
+}
+
+.event-info dt {
+  font-weight: 800;
+}
+
+.event-info dd {
+  margin: 0;
+}
+
+.slide-gallery {
+  background-color: rgb(24, 122, 57);
+}
+
+.gallery-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pic1 {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: none;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--blue);
+}
+
+.slide-tip {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 5;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  transform: translateX(-50%);
+}
+
+.slide-tip span {
+  width: 14px;
+  height: 14px;
+  border-right: 3px solid rgba(255, 255, 255, 0.86);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.86);
+  transform: rotate(45deg);
+  animation: tipMove 1.4s infinite;
+}
+
+.ani {
+  opacity: 0;
+}
+
+.swiper-slide-active .animated {
+  opacity: 1;
+}
+
+.effect-swing {
+  animation-name: swing;
+  transform-origin: top center;
+}
+
+.effect-bounceIn {
+  animation-name: bounceIn;
+}
+
+.effect-zoomIn {
+  animation-name: zoomIn;
+}
+
+.effect-fadeInUp {
+  animation-name: fadeInUp;
+}
+
+.effect-fadeInDown {
+  animation-name: fadeInDown;
+}
+
+@keyframes swing {
+  20% { transform: rotate(12deg); }
+  40% { transform: rotate(-9deg); }
+  60% { transform: rotate(6deg); }
+  80% { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { opacity: 1; transform: scale(1.08); }
+  70% { transform: scale(0.94); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes zoomIn {
+  0% { opacity: 0; transform: scale(0.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(28px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tipMove {
+  0% { opacity: 0; transform: translateY(-6px) rotate(45deg); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(8px) rotate(45deg); }
+}
+
+@media (max-width: 520px) {
+  .phone-stage {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    box-shadow: none;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .intro-card p {
+    font-size: 17px;
+  }
+}
