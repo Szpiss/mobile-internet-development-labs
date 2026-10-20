@@ -9,7 +9,7 @@ from docx.shared import Cm, Pt
 
 BASE_DIR = Path(__file__).resolve().parent
 ASSETS = BASE_DIR / "实验素材"
-OUTPUT = BASE_DIR / "实验文档" / "2315302125 崔子霖4.docx"
+OUTPUT = BASE_DIR / "实验文档" / "2023000001 张三4.docx"
 
 
 def set_run_font(run, size=12, bold=False, east_asia="宋体", western="Times New Roman"):
@@ -89,8 +89,8 @@ def build_cover(document):
         ("课程名称：", "移动互联网开发基础"),
         ("学    院：", "计算机与人工智能"),
         ("专    业：", "计算机科学与技术"),
-        ("学    号：", "2315302125"),
-        ("姓    名：", "崔子霖"),
+        ("学    号：", "2023000001"),
+        ("姓    名：", "张三"),
         ("任课教师：", "待补充"),
     ]
 

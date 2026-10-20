@@ -33,15 +33,15 @@ from reportlab.platypus import (
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE_DIR = ROOT / "移动互联网开发基础_四个实验提交包"
-PDF_NAME = "2315302125_崔子霖_移动互联网开发基础实验一至四合并报告.pdf"
-ZIP_NAME = "2315302125_崔子霖_移动互联网开发基础实验一至四提交包"
+PDF_NAME = "2023000001_张三_移动互联网开发基础实验一至四合并报告.pdf"
+ZIP_NAME = "2023000001_张三_移动互联网开发基础实验一至四提交包"
 TMP_DIR = ROOT / "tmp" / "combined_report_assets"
 
 EXPERIMENTS = [
-    ("实验一", ROOT / "实验一" / "实验文档" / "2315302125 崔子霖1.docx"),
-    ("实验二", ROOT / "实验二" / "实验文档" / "2315302125 崔子霖2.docx"),
-    ("实验三", ROOT / "实验三" / "实验文档" / "2315302125 崔子霖3.docx"),
-    ("实验四", ROOT / "实验四" / "实验文档" / "2315302125 崔子霖4.docx"),
+    ("实验一", ROOT / "实验一" / "实验文档" / "2023000001 张三1.docx"),
+    ("实验二", ROOT / "实验二" / "实验文档" / "2023000001 张三2.docx"),
+    ("实验三", ROOT / "实验三" / "实验文档" / "2023000001 张三3.docx"),
+    ("实验四", ROOT / "实验四" / "实验文档" / "2023000001 张三4.docx"),
 ]
 
 CODE_COPY_RULES = {
@@ -266,7 +266,7 @@ def build_pdf() -> Path:
         topMargin=2 * cm,
         bottomMargin=1.8 * cm,
         title="移动互联网开发基础实验一至四合并报告",
-        author="崔子霖",
+        author="张三",
     )
     doc.build(story, onFirstPage=add_page_numbers, onLaterPages=add_page_numbers)
     return pdf_path
